@@ -2,11 +2,10 @@ import * as fs from 'fs/promises';
 import * as os from 'os';
 import * as path from 'path';
 import { OpenAIChat } from './Vendors/OpenAI';
-import { countTokens } from 'gpt-tokenizer/model/gpt-4o';
 
 export const MODELS: Record<string, string> = {
-  's'  : 'openrouter:stepfun/step-3.5-flash:free:medium',
-  'n'  : 'openrouter:nvidia/nemotron-3-super-120b-a12b:free:medium',
+  's'  : 'openrouter:stepfun/step-3.5-flash:free:none',
+  'n'  : 'openrouter:nvidia/nemotron-3-super-120b-a12b:free:none',
 };
 
 export type Vendor = 'openrouter';
@@ -17,14 +16,6 @@ export interface ResolvedModelSpec {
   model: string;
   thinking: ThinkingLevel;
   fast: boolean;
-}
-
-export interface VendorConfig {
-  openai?: {
-    reasoning?: {
-      effort: 'minimal' | 'low' | 'medium' | 'high';
-    };
-  };
 }
 
 export type JsonSchema = Record<string, any>;
@@ -53,7 +44,6 @@ export interface AskOptions {
   max_completion_tokens?: number;
   stream?: boolean;
   system_cacheable?: boolean;
-  vendorConfig?: VendorConfig;
 }
 
 export interface AskToolsOptions extends AskOptions {
@@ -126,6 +116,7 @@ export function resolveModelSpec(spec: string): ResolvedModelSpec {
   if (parts.length > 1 && parts[parts.length - 1].trim().toLowerCase() === 'fast') {
     fast = true;
     parts.pop();
+    trimmed = parts.join(':');
   }
 
   // Single part: alias lookup or direct model name
@@ -174,18 +165,9 @@ export function resolveModelSpec(spec: string): ResolvedModelSpec {
   return { vendor: 'openrouter', model: modelStr, thinking, fast };
 }
 
-function buildVendorConfig(thinking: ThinkingLevel): VendorConfig {
-  return {};
-}
-
 export async function AskAI(modelSpec: string): Promise<ChatInstance> {
   const resolved = resolveModelSpec(modelSpec);
-  const vendorConfig = buildVendorConfig(resolved.thinking);
   const apiKey = await getToken('openrouter');
   const baseURL = 'https://openrouter.ai/api/v1';
-  return new OpenAIChat(apiKey, baseURL, resolved.model, resolved.vendor, vendorConfig);
-}
-
-export function tokenCount(text: string): number {
-  return countTokens(text);
+  return new OpenAIChat(apiKey, baseURL, resolved.model, resolved.vendor);
 }

@@ -1,5 +1,4 @@
 node_modules/
 dist/
-.long/
-.shot/
-.tmp/
+.env
+*.token

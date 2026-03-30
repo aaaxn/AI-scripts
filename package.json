@@ -31,11 +31,7 @@
   "license": "MIT",
   "dependencies": {
     "commander": "^13.1.0",
-    "gpt-tokenizer": "^2.9.0",
     "openai": "^4.95.0",
     "typescript": "^5.8.3"
-  },
-  "devDependencies": {
-    "@types/minimist": "^1.2.5"
   }
 }

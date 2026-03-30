@@ -1,37 +1,43 @@
-Taelin AI Scripts
-=================
+AI-Scripts (OpenRouter-only fork)
+=================================
 
-AI tools for daily coding workflows.
+Stripped-down fork of [VictorTaelin/AI-scripts](https://github.com/VictorTaelin/AI-scripts), reduced to only `csh` (terminal chat with shell execution) using free OpenRouter models.
 
-Structure
----------
+Models
+------
 
-- `./askai/` — unified AI interface (`AskAI`) and vendor implementations
-- `./tools/` — CLI tools built on AskAI
-- `./` — config files (`package.json`, `tsconfig.json`, etc.)
+| Alias | Model |
+|-------|-------|
+| `s` (default) | `stepfun/step-3.5-flash:free` |
+| `n` | `nvidia/nemotron-3-super-120b-a12b:free` |
 
-Tools
------
+What was removed
+----------------
 
-- `csh` — terminal chat with shell execution ([example](https://x.com/VictorTaelin/status/1655304645953089538))
-- `holefill` — fill `.?.` placeholders in code via AI
-- `shot` — one-shot AI code editing with tool calls
-- `refactor` — context-aware code refactoring with smart compaction
-- `board` — multi-advisor panel for file review
-- `long` — codex loop: goal → work → board review → repeat
+- Vendors: Anthropic, Google, xAI (only OpenRouter via OpenAI-compatible API remains)
+- Tools: holefill, shot, refactor, board, long (only `csh` remains)
+- Dependencies: stripped from 15 to 3
 
 Usage
 -----
 
 ```bash
-npm install -g
+npm install -g .
 ```
 
-Then run any tool from the terminal (e.g. `csh s`, `holefill file.ts`).
+Store your OpenRouter API key:
 
-API keys go in `~/.config/<vendor>.token` (e.g. `~/.config/openai.token`).
+```bash
+echo -n 'your-key-here' > ~/.config/openrouter.token
+```
 
-See `./askai/AskAI.md` for the AskAI library API reference.
+Then:
+
+```bash
+csh        # chat with stepfun flash (default)
+csh s      # same, explicit
+csh n      # chat with nvidia nemotron
+```
 
 License
 -------

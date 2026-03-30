@@ -8,8 +8,10 @@ Models
 
 | Alias | Model |
 |-------|-------|
-| `s` (default) | `stepfun/step-3.5-flash:free` |
+| `s` | `stepfun/step-3.5-flash:free` |
 | `n` | `nvidia/nemotron-3-super-120b-a12b:free` |
+| `n2` (default) | `nvidia/nemotron-3-nano-30b-a3b:free` |
+| `m` | `minimax/minimax-m2.5:free` |
 
 What was removed
 ----------------
@@ -34,9 +36,11 @@ echo -n 'your-key-here' > ~/.config/openrouter.token
 Then:
 
 ```bash
-csh        # chat with stepfun flash (default)
-csh s      # same, explicit
+csh        # chat with nemotron nano (default)
+csh s      # chat with stepfun flash
 csh n      # chat with nvidia nemotron
+csh n2     # chat with nvidia nemotron nano
+csh m      # chat with minimax m2.5
 ```
 
 License

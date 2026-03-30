@@ -6,6 +6,8 @@ import { OpenAIChat } from './Vendors/OpenAI';
 export const MODELS: Record<string, string> = {
   's'  : 'openrouter:stepfun/step-3.5-flash:free:none',
   'n'  : 'openrouter:nvidia/nemotron-3-super-120b-a12b:free:none',
+  'n2' : 'openrouter:nvidia/nemotron-3-nano-30b-a3b:free:none',
+  'm'  : 'openrouter:minimax/minimax-m2.5:free:none',
 };
 
 export type Vendor = 'openrouter';

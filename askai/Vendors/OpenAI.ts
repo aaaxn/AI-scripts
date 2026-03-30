@@ -306,10 +306,6 @@ export class OpenAIChat implements ChatInstance {
 
     const mergedOpenAIConfig = this.mergeOpenAIConfig(options);
 
-    if (this.vendor === "openai") {
-      return this.askViaResponsesAPI({ options, wantStream, mergedOpenAIConfig });
-    }
-
     return this.askViaChatCompletions({ options, wantStream, mergedOpenAIConfig });
   }
 
@@ -328,9 +324,6 @@ export class OpenAIChat implements ChatInstance {
 
     const mergedOpenAIConfig = this.mergeOpenAIConfig(options);
 
-    if (this.vendor === "openai") {
-      return this.askToolsViaResponsesAPI({ options, mergedOpenAIConfig, tools });
-    }
     return this.askToolsViaChatCompletions({ options, mergedOpenAIConfig, tools });
   }
 

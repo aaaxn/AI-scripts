@@ -118,10 +118,10 @@ function formatModelError(error: unknown): string {
 async function main() {
   const program = new Command();
   program
-    .argument('<model>', 'Model shortcode')
+    .argument('[model]', 'Model shortcode', 's')
     .parse(process.argv);
 
-  const [model] = program.args;
+  const model = program.args[0] ?? 's';
   const resolvedSpec = resolveModelSpec(model);
   const resolvedModelName = `${resolvedSpec.vendor}:${resolvedSpec.model}:${resolvedSpec.thinking}${resolvedSpec.fast ? ':fast' : ''}`;
   const ai = await AskAI(model);

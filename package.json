@@ -1,7 +1,7 @@
 {
   "name": "tai_scripts",
   "version": "0.2.0",
-  "description": "Taelin AI Scripts",
+  "description": "Taelin AI Scripts (OpenRouter-only fork)",
   "main": "./dist/askai/AskAI.js",
   "types": "./dist/askai/AskAI.d.ts",
   "exports": {
@@ -11,21 +11,14 @@
     }
   },
   "bin": {
-    "refactor": "./dist/tools/Refactor.js",
-    "holefill": "./dist/tools/HoleFill.js",
-    "csh": "./dist/tools/ChatSH.js",
-    "shot": "./dist/tools/Shot.js",
-    "long": "./dist/tools/Long.js",
-    "board": "./dist/tools/Board.js"
+    "csh": "./dist/tools/ChatSH.js"
   },
   "files": [
     "dist"
   ],
   "scripts": {
     "build": "rm -rf dist && tsc && chmod +x dist/tools/*.js",
-    "prepare": "npm run build",
-    "test": "node test-import.ts",
-    "test:esm": "node --input-type=module test-import.ts"
+    "prepare": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -36,30 +29,13 @@
   ],
   "author": "VictorTaelin",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/victortaelin/ai-scripts/issues"
-  },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.74.0",
-    "@google/genai": "^1.29.1",
-    "@openrouter/ai-sdk-provider": "^0.4.5",
-    "@portkey-ai/gateway": "^1.9.15",
-    "apify-client": "^2.12.2",
     "commander": "^13.1.0",
-    "gateway": "^1.0.0",
-    "googleapis": "^148.0.0",
     "gpt-tokenizer": "^2.9.0",
-    "groq-sdk": "^0.19.0",
-    "ignore": "^7.0.3",
-    "minimist": "^1.2.8",
-    "oauth-1.0a": "^2.2.6",
     "openai": "^4.95.0",
-    "portkey-ai": "^1.8.0",
     "typescript": "^5.8.3"
   },
-  "homepage": "https://github.com/victortaelin/ai-scripts#readme",
   "devDependencies": {
-    "@types/minimatch": "^5.1.2",
     "@types/minimist": "^1.2.5"
   }
 }

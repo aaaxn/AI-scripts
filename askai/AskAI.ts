@@ -41,9 +41,7 @@ export interface AskOptions {
   system?: string;
   temperature?: number;
   max_tokens?: number;
-  max_completion_tokens?: number;
   stream?: boolean;
-  system_cacheable?: boolean;
 }
 
 export interface AskToolsOptions extends AskOptions {
@@ -169,5 +167,5 @@ export async function AskAI(modelSpec: string): Promise<ChatInstance> {
   const resolved = resolveModelSpec(modelSpec);
   const apiKey = await getToken('openrouter');
   const baseURL = 'https://openrouter.ai/api/v1';
-  return new OpenAIChat(apiKey, baseURL, resolved.model, resolved.vendor);
+  return new OpenAIChat(apiKey, baseURL, resolved.model);
 }

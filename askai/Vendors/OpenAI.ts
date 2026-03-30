@@ -6,13 +6,9 @@ import type {
   ChatInstance,
   ToolCall,
   ToolDef,
-  Vendor,
 } from "../AskAI";
 
 type Role = "user" | "assistant";
-
-const DIM = "\x1b[2m";
-const RESET = "\x1b[0m";
 
 function parseToolArgs(raw: unknown): Record<string, any> {
   if (raw && typeof raw === "object" && !Array.isArray(raw)) {
@@ -42,9 +38,8 @@ export class OpenAIChat implements ChatInstance {
     apiKey: string,
     baseURL: string,
     model: string,
-    vendor: Vendor,
   ) {
-    const defaultHeaders = { "HTTP-Referer": "https://github.com/victortaelin/ai-scripts" };
+    const defaultHeaders = { "HTTP-Referer": "https://github.com/aaaxn/ai-scripts" };
     this.client = new OpenAI({ apiKey, baseURL, defaultHeaders });
     this.model = model;
   }
